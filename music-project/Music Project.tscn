@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkwwnxk12rrn2"]
+[gd_scene load_steps=5 format=3 uid="uid://dkwwnxk12rrn2"]
 
 [ext_resource type="Script" path="res://button.gd" id="1_x1y4s"]
 [ext_resource type="AudioStream" uid="uid://ctwup8n73hcs5" path="res://samples/clap-analog.wav" id="2_3lkrb"]
 [ext_resource type="AudioStream" uid="uid://d1fll2yj835qd" path="res://samples/cowbell-808.wav" id="3_21nu4"]
+[ext_resource type="AudioStream" uid="uid://dxr36vttcnmuo" path="res://samples/crash-808.wav" id="4_cd7ub"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,7 +16,7 @@ script = ExtResource("1_x1y4s")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Clap Button"]
 stream = ExtResource("2_3lkrb")
 
-[node name="Button" type="Button" parent="."]
+[node name="Cowbell Button" type="Button" parent="."]
 offset_left = 105.0
 offset_top = -2.0
 offset_right = 178.0
@@ -23,10 +24,23 @@ offset_bottom = 53.0
 text = "Cowbell"
 script = ExtResource("1_x1y4s")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Cowbell Button"]
 stream = ExtResource("3_21nu4")
+
+[node name="Crash Button" type="Button" parent="."]
+offset_left = 210.0
+offset_top = 1.0
+offset_right = 284.0
+offset_bottom = 54.0
+text = "Crash"
+script = ExtResource("1_x1y4s")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Crash Button"]
+stream = ExtResource("4_cd7ub")
 
 [connection signal="button_down" from="Clap Button" to="Clap Button" method="_on_button_down"]
 [connection signal="finished" from="Clap Button/AudioStreamPlayer2D" to="Clap Button" method="_on_audio_stream_player_2d_finished"]
-[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
-[connection signal="finished" from="Button/AudioStreamPlayer2D" to="Button" method="_on_audio_stream_player_2d_finished"]
+[connection signal="button_down" from="Cowbell Button" to="Cowbell Button" method="_on_button_down"]
+[connection signal="finished" from="Cowbell Button/AudioStreamPlayer2D" to="Cowbell Button" method="_on_audio_stream_player_2d_finished"]
+[connection signal="button_down" from="Crash Button" to="Crash Button" method="_on_button_down"]
+[connection signal="finished" from="Crash Button/AudioStreamPlayer2D" to="Crash Button" method="_on_audio_stream_player_2d_finished"]
