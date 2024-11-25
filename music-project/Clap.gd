@@ -12,9 +12,9 @@ func _process(delta: float) -> void:
 
 
 func _on_button_down() -> void:
-	if Input.is_action_pressed("A"):
+	if Input.is_action_pressed("Click button"):
 		$AudioStreamPlayer2D.play()
-		$"../Cowbell Button/Pineapple Cowbell".play("cowbell")
+		#$"../Cowbell Button/Pineapple Cowbell".play("cowbell")
 	pass # Replace with function body.
 
 
