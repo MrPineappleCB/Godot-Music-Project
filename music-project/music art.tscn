@@ -1,25 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwb8tus2qqd0m"]
+[gd_scene load_steps=7 format=3 uid="uid://dwb8tus2qqd0m"]
 
 [ext_resource type="Script" path="res://thing.gd" id="1_7m2tr"]
 [ext_resource type="AudioStream" uid="uid://ctwup8n73hcs5" path="res://samples/clap-analog.wav" id="2_4xroc"]
+[ext_resource type="AudioStream" uid="uid://c5owdj4bnvpnp" path="res://sounds/Blip_Select9.wav" id="2_6amm5"]
+[ext_resource type="AudioStream" uid="uid://bjv3fsh54wsa8" path="res://samples/hihat-808.wav" id="3_6wkut"]
+[ext_resource type="AudioStream" uid="uid://cmch7xw1s1kq7" path="res://samples/crash-tape.wav" id="5_27xo3"]
+[ext_resource type="AudioStream" uid="uid://c5i7h8xl5brgb" path="res://samples/openhat-808.wav" id="6_xo8g8"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_7m2tr")
+
+[node name="HScrollBar" type="HScrollBar" parent="."]
+offset_left = 343.0
+offset_top = 104.0
+offset_right = 761.0
+offset_bottom = 112.0
+step = 1.0
+
+[node name="TextEdit" type="TextEdit" parent="HScrollBar"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -34.0
+offset_right = 128.0
+offset_bottom = -5.0
+text = "Volume"
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Button" type="Button" parent="."]
-offset_left = 4.0
-offset_top = 364.0
-offset_right = 55.0
-offset_bottom = 402.0
-text = "Clap"
+offset_top = 2.0
+offset_right = 1186.0
+offset_bottom = 50.0
+text = "Start"
+script = ExtResource("1_7m2tr")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Button"]
+position = Vector2(26, 18)
+stream = ExtResource("2_6amm5")
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+offset_left = 481.0
+offset_top = 191.0
+offset_right = 553.0
+offset_bottom = 233.0
+text = "hihat"
+script = ExtResource("1_7m2tr")
+
+[node name="hihat" type="AudioStreamPlayer2D" parent="."]
+visible = false
+position = Vector2(514, 212)
+stream = ExtResource("3_6wkut")
+
+[node name="clap" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_4xroc")
 
+[node name="crash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_27xo3")
+
+[node name="openhat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_xo8g8")
+
+[connection signal="scrolling" from="HScrollBar" to="Button" method="_on_h_scroll_bar_scrolling"]
 [connection signal="timeout" from="Timer" to="." method="_draw"]
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="Button" to="." method="_draw"]
 [connection signal="pressed" from="Button" to="." method="_draw"]
-[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="finished" from="Button/AudioStreamPlayer2D2" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="finished" from="Button/AudioStreamPlayer2D2" to="Button" method="_on_audio_stream_player_2d_finished"]
+[connection signal="button_down" from="Button2" to="Button2" method="_on_button_down"]
+[connection signal="finished" from="hihat" to="Button2" method="_on_audio_stream_player_2d_finished"]
