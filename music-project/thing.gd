@@ -1,10 +1,13 @@
 #extends Node2D
 extends Button
 var s = 0
+var kick = true
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for kick in range(5):
+		$"../AudioStreamPlayer2D".play()
 	pass # Replace with function body.
 
 
@@ -31,13 +34,8 @@ func _draw() -> void:
 			s = 0
 		#print(s)
 		queue_redraw()
-	elif Input.is_action_pressed("test"):
-		draw_rect(tiles[s], Color.BLUE)
-		$"../hihat".play()
-		s+=1
-		if s > len(tiles)-1:
-			s = 0
-		#print(s)
+	
+	elif Input.is_action_just_pressed("test"):
 		queue_redraw()
 	elif Input.is_action_pressed("clap"):
 		draw_rect(tiles[s], Color.YELLOW)
@@ -95,6 +93,14 @@ func _draw() -> void:
 		s+=1
 		if s > len(tiles)-1:
 			s = 0
+		queue_redraw()
+	elif Input.is_action_pressed("hihat"):
+		draw_rect(tiles[s], Color.BLUE)
+		$"../hihat".play()
+		s+=1
+		if s > len(tiles)-1:
+			s = 0
+		#print(s)
 		queue_redraw()
 		#print("reach here")
 	#print("reach")
