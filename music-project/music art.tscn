@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwb8tus2qqd0m"]
+[gd_scene load_steps=3 format=3 uid="uid://dwb8tus2qqd0m"]
 
 [ext_resource type="Script" path="res://thing.gd" id="1_7m2tr"]
+[ext_resource type="AudioStream" uid="uid://ctwup8n73hcs5" path="res://samples/clap-analog.wav" id="2_4xroc"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_7m2tr")
@@ -12,8 +13,13 @@ offset_left = 4.0
 offset_top = 364.0
 offset_right = 55.0
 offset_bottom = 402.0
-text = "red"
+text = "Clap"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_4xroc")
 
 [connection signal="timeout" from="Timer" to="." method="_draw"]
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="Button" to="." method="_draw"]
+[connection signal="pressed" from="Button" to="." method="_draw"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
