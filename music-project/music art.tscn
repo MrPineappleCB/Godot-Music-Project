@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwb8tus2qqd0m"]
+[gd_scene load_steps=13 format=3 uid="uid://dwb8tus2qqd0m"]
 
 [ext_resource type="Script" path="res://thing.gd" id="1_7m2tr"]
 [ext_resource type="Texture2D" uid="uid://rtjb1xhwm4yo" path="res://black background.jpg" id="1_dxo7i"]
@@ -8,6 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://cmch7xw1s1kq7" path="res://samples/crash-tape.wav" id="5_27xo3"]
 [ext_resource type="AudioStream" uid="uid://c5i7h8xl5brgb" path="res://samples/openhat-808.wav" id="6_xo8g8"]
 [ext_resource type="AudioStream" uid="uid://dxgcdotdnudy1" path="res://samples/perc-tambo.wav" id="7_a8h25"]
+[ext_resource type="AudioStream" uid="uid://fbn8nlrjieul" path="res://samples/ride-acoustic01.wav" id="9_a76g0"]
+[ext_resource type="AudioStream" uid="uid://85mvelkiew7y" path="res://samples/shaker-shuffle.wav" id="10_xqwii"]
+[ext_resource type="AudioStream" uid="uid://s8uc1tjr67r6" path="res://samples/snare-smasher.wav" id="11_ihiiy"]
+[ext_resource type="AudioStream" uid="uid://co5kyd3ufnc4v" path="res://samples/tom-rototom.wav" id="12_q2gus"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -35,14 +39,18 @@ text = "Volume"
 offset_left = 836.0
 offset_top = 372.0
 offset_right = 1243.0
-offset_bottom = 599.0
+offset_bottom = 688.0
 text = "Contols:
 Press Start to Begin
 Space = Hihat
 Space + Left = Clap
 Space + Right = Crash
 Space + Up = Openhat
-Space + Down = Perc"
+Space + Down = Perc
+Space + Q = Ride
+Space + W = Shaker
+Space + E = Snare
+Space  = R = Tom"
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -85,6 +93,18 @@ stream = ExtResource("6_xo8g8")
 [node name="perc" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(277, 439)
 stream = ExtResource("7_a8h25")
+
+[node name="ride" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_a76g0")
+
+[node name="shaker" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_xqwii")
+
+[node name="snare" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_ihiiy")
+
+[node name="tom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_q2gus")
 
 [connection signal="scrolling" from="HScrollBar" to="Button" method="_on_h_scroll_bar_scrolling"]
 [connection signal="timeout" from="Timer" to="." method="_draw"]

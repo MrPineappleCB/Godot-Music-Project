@@ -68,6 +68,34 @@ func _draw() -> void:
 		if s > len(tiles)-1:
 			s = 0
 		queue_redraw()
+	elif Input.is_action_pressed("ride"):
+		draw_rect(tiles[s], Color.ORANGE)
+		$"../ride".play()
+		s+=1
+		if s > len(tiles)-1:
+			s = 0
+		queue_redraw()
+	elif Input.is_action_pressed("shaker"):
+		draw_rect(tiles[s], Color.CYAN)
+		$"../shaker".play()
+		s+=1
+		if s > len(tiles)-1:
+			s = 0
+		queue_redraw()
+	elif Input.is_action_pressed("snare"):
+		draw_rect(tiles[s], Color.DARK_GREEN)
+		$"../snare".play()
+		s+=1
+		if s > len(tiles)-1:
+			s = 0
+		queue_redraw()
+	elif Input.is_action_pressed("tom"):
+		draw_rect(tiles[s], Color.LIGHT_YELLOW)
+		$"../tom".play()
+		s+=1
+		if s > len(tiles)-1:
+			s = 0
+		queue_redraw()
 		#print("reach here")
 	#print("reach")
 	pass
