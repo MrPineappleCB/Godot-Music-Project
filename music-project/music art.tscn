@@ -1,19 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwb8tus2qqd0m"]
+[gd_scene load_steps=9 format=3 uid="uid://dwb8tus2qqd0m"]
 
 [ext_resource type="Script" path="res://thing.gd" id="1_7m2tr"]
+[ext_resource type="Texture2D" uid="uid://rtjb1xhwm4yo" path="res://black background.jpg" id="1_dxo7i"]
 [ext_resource type="AudioStream" uid="uid://ctwup8n73hcs5" path="res://samples/clap-analog.wav" id="2_4xroc"]
 [ext_resource type="AudioStream" uid="uid://c5owdj4bnvpnp" path="res://sounds/Blip_Select9.wav" id="2_6amm5"]
 [ext_resource type="AudioStream" uid="uid://bjv3fsh54wsa8" path="res://samples/hihat-808.wav" id="3_6wkut"]
 [ext_resource type="AudioStream" uid="uid://cmch7xw1s1kq7" path="res://samples/crash-tape.wav" id="5_27xo3"]
 [ext_resource type="AudioStream" uid="uid://c5i7h8xl5brgb" path="res://samples/openhat-808.wav" id="6_xo8g8"]
+[ext_resource type="AudioStream" uid="uid://dxgcdotdnudy1" path="res://samples/perc-tambo.wav" id="7_a8h25"]
 
 [node name="Node2D" type="Node2D"]
 
+[node name="BlackBackground" type="Sprite2D" parent="."]
+position = Vector2(1226, 703)
+scale = Vector2(3.33265, 3.40315)
+texture = ExtResource("1_dxo7i")
+
 [node name="HScrollBar" type="HScrollBar" parent="."]
-offset_left = 343.0
-offset_top = 104.0
-offset_right = 761.0
-offset_bottom = 112.0
+offset_left = 846.0
+offset_top = 185.0
+offset_right = 1264.0
+offset_bottom = 193.0
 step = 1.0
 
 [node name="TextEdit" type="TextEdit" parent="HScrollBar"]
@@ -24,11 +31,24 @@ offset_right = 128.0
 offset_bottom = -5.0
 text = "Volume"
 
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 836.0
+offset_top = 372.0
+offset_right = 1243.0
+offset_bottom = 599.0
+text = "Contols:
+Press Start to Begin
+Space = Hihat
+Space + Left = Clap
+Space + Right = Crash
+Space + Up = Openhat
+Space + Down = Perc"
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Button" type="Button" parent="."]
 offset_top = 2.0
-offset_right = 1186.0
+offset_right = 2289.0
 offset_bottom = 50.0
 text = "Start"
 script = ExtResource("1_7m2tr")
@@ -47,18 +67,24 @@ text = "hihat"
 script = ExtResource("1_7m2tr")
 
 [node name="hihat" type="AudioStreamPlayer2D" parent="."]
-visible = false
-position = Vector2(514, 212)
+position = Vector2(92, 174)
 stream = ExtResource("3_6wkut")
 
 [node name="clap" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(841, 323)
 stream = ExtResource("2_4xroc")
 
 [node name="crash" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(191, 299)
 stream = ExtResource("5_27xo3")
 
 [node name="openhat" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(966, 177)
 stream = ExtResource("6_xo8g8")
+
+[node name="perc" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(277, 439)
+stream = ExtResource("7_a8h25")
 
 [connection signal="scrolling" from="HScrollBar" to="Button" method="_on_h_scroll_bar_scrolling"]
 [connection signal="timeout" from="Timer" to="." method="_draw"]

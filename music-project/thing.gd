@@ -9,20 +9,6 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-"""
-func _draw() -> void:
-	var r = get_viewport_rect()
-	r.size.x = r.size.x / 8
-	r.size.y = r.size.y / 8
-	#print(r.size.x)
-	#print(tiles)
-	var tile0 = Rect2(0,0, r.size.x, r.size.y)
-	#draw_rect(Rect2(tile0), Color.RED)
-	if Input.is_action_pressed("Click button"):
-		draw_rect(tile0, Color.RED)
-	var tiles = [tile0]
-	pass
-"""
 
 func _draw() -> void:
 	#print("ver")
@@ -71,6 +57,13 @@ func _draw() -> void:
 	elif Input.is_action_pressed("openhat"):
 		draw_rect(tiles[s], Color.PURPLE)
 		$"../openhat".play()
+		s+=1
+		if s > len(tiles)-1:
+			s = 0
+		queue_redraw()
+	elif Input.is_action_pressed("perc"):
+		draw_rect(tiles[s], Color.PINK)
+		$"../perc".play()
 		s+=1
 		if s > len(tiles)-1:
 			s = 0
