@@ -1,4 +1,5 @@
 Drum Visualiser: Turn sounds into colour
+by Cormac Barrett (C24405434)
 
 
 Unfortunately this project contains a minor bug in which the player must hold the respective button and then press the spacebar for the sounds to play. This is something I will try to fix, but was unable to for the deadline.
